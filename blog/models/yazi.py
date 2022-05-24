@@ -3,14 +3,12 @@ from django.db import models
 from blog.models import KategoriModel
 from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
+from blog.abstract_models import DateAbstractModal
 
-
-class YazilarModel(models.Model):
+class YazilarModel(DateAbstractModal):
     resim = models.ImageField(upload_to='yazi_resimleri')
     title = models.CharField(max_length=50)
     content = RichTextField()
-    created = models.DateTimeField(auto_now_add=True)
-    moderated = models.DateTimeField(auto_now=True)
     yazi_slug = AutoSlugField(populate_from='title', unique=True)
     kategoriler = models.ManyToManyField(KategoriModel)
     yazar = models.ForeignKey('account.CustomUserModel', on_delete=models.CASCADE, related_name='yazilar')
