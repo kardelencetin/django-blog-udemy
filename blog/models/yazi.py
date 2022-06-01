@@ -10,7 +10,7 @@ class YazilarModel(DateAbstractModal):
     title = models.CharField(max_length=50)
     content = RichTextField()
     yazi_slug = AutoSlugField(populate_from='title', unique=True)
-    kategoriler = models.ManyToManyField(KategoriModel)
+    kategoriler = models.ManyToManyField(KategoriModel, related_name='yazi')
     yazar = models.ForeignKey('account.CustomUserModel', on_delete=models.CASCADE, related_name='yazilar')
 
     class Meta:
