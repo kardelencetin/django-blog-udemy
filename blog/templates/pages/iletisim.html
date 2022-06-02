@@ -1,10 +1,19 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
 {% block title %}İletişim{% endblock %}
 
 
 {% block content %}
 
-{{ key|title }}    
-      
+    <form method="POST">
+        <!-- {{ form.non_field_errors }}  -> formla ilgili olmayan hatalar icin kullanılır! -->
+        {% csrf_token %}
+        {{ form|crispy }} 
+        <!-- {{ form.isim_soyisim }} - {{ form.isim_soyisim.errors }} - {{ form.isim_soyisim.label }}
+        {{ form.mesaj }} - {{ form.mesaj.errors }} - {{ form.mesaj.label }}
+        {{ form.email }} - {{ form.email.errors }} - {{ form.email.label }} -->
+        
+        <input type="submit" class="btn btn-danger mt-3 mb-3" value="GÖNDER">
+    </form>
 {% endblock %}
