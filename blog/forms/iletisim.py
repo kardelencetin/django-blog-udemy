@@ -5,7 +5,7 @@ from blog.models import IletisimModel
 class IletisimForm(forms.ModelForm):
     class Meta:
         model = IletisimModel
-        fields = ['isim_soyisim', 'email', 'mesaj']
+        fields = ('isim_soyisim', 'email', 'mesaj')
 
     
 # class IletisimForm(forms.Form):

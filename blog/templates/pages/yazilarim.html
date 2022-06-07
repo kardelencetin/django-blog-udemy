@@ -20,6 +20,13 @@
         <th scope="row">{{ yazi.id}}</th>
         <td>{{ yazi.title }}</td>
         <td>{{ yazi.moderated }}</td>
+        <td>{% if request.user == yazi.yazar %}
+          <p>
+            <a class="btn btn-primary" href="{% url 'yazi-guncelle' yazi_slug=yazi.yazi_slug %}">Duzenle</a>
+            <a class="btn btn-danger" href="{% url 'yazi-sil' yazi_slug=yazi.yazi_slug %}">Sil</a>
+          </p>
+         
+        {% endif %}</td>
       </tr>
     {% empty %}
       <p>Hiç yazı bulunamadı!</p>
